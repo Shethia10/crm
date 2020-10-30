@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Forgot Username</title>
     <style>
         body {
             background-color: #00171f
         }
-        
+        h3 {
+            color: rgb(250, 44, 44)
+        }
         h1 {
             color: #ffffff;
             background-color: #003459;
@@ -38,7 +40,7 @@
         /* Set a style for all buttons */
         
         button {
-            background-color: #007ea7;
+            background-color: #003459;
             color: white;
             padding: 14px 20px;
             margin: 8px 0;
@@ -79,6 +81,7 @@
             .cancelbtn {
                 width: 100%;
             }
+            
         }
     </style>
     <h1 align="center">
@@ -87,30 +90,27 @@
 </head>
 
 <body>
-    <form action='login' method="post">
+    <form action='forgot_uname' method="post">
         {% csrf_token %}
         <h2 align="center">
-            <b>Login to Creative Finserve</b>
+            <b>Forgot Username</b>
         </h2>
         <div class="container">
-            <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="username" required>
+            <label for="email"><b>Enter Registered Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" required>
 
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
+            <button type="submit">Done</button>
 
-            <button type="submit">Login</button>
-            <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
-          </label>
         </div>
 
-
+        <div class="container">
+            {% for message in messages %}
+            <h3>{{message}}</h3>
+            {% endfor %}
+        </div>
 
         <div class="container" style="background-color:#f1f1f1">
             <button type="button" class="cancelbtn">Cancel</button>
-            <span class="psw"> <a href="reset_password">Forgot password?</a></span>
-            <span class="psw">Forgot <a href="forgot_uname">Username?</a></span>
         </div>
     </form>
 </body>

@@ -1,10 +1,9 @@
-from django.shortcuts import render
-
-# Create your views here.
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from .models import CustomUser
 from django.contrib import messages
+from django.conf import settings 
+from django.core.mail import send_mail 
 
 def register(request):
     if request.method == 'POST':
@@ -29,6 +28,11 @@ def register(request):
             else:
                 user = CustomUser.objects.create_user(username=username, password=password1, email=email, first_name=fname, last_name=lname, phone=phone, alt_phone=alt_phone, designation=designation, address=address)
                 user.save()
+                subject = 'Welcome to Birmingham'
+                message = f'Hi {user.username}, thank you for registering.'
+                email_from = settings.EMAIL_HOST_USER 
+                recipient_list = [user.email, ] 
+                send_mail( subject, message, email_from, recipient_list )
                 return redirect('login')
         else:
             messages.info(request, 'Password did not match')
@@ -56,3 +60,20 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+def forgot_uname(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        if CustomUser.objects.filter(email=email).exists():
+            p = CustomUser.objects.raw('SELECT * FROM account_customuser WHERE email = %s', [email])
+            subject = 'Request for username'
+            message = f'Hi Your Username is: {p[0].username}'
+            email_from = settings.EMAIL_HOST_USER 
+            recipient_list = [email, ] 
+            send_mail( subject, message, email_from, recipient_list ) 
+            return redirect('login')
+        else:
+            messages.info(request, 'Email not registered')
+            return redirect('forgot_uname')
+    else:
+        return render(request, 'account/forgot_uname.html')
