@@ -68,6 +68,7 @@
         span.psw {
             float: right;
             padding-top: 16px;
+            
         }
         /* Change styles for span and cancel button on extra small screens */
         
@@ -99,6 +100,8 @@
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>
 
+            <h3> {{message}} </h3>
+
             <button type="submit">Login</button>
             <label>
             <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -110,7 +113,8 @@
         <div class="container" style="background-color:#f1f1f1">
             <button type="button" class="cancelbtn">Cancel</button>
             <span class="psw"> <a href="reset_password">Forgot password?</a></span>
-            <span class="psw">Forgot <a href="forgot_uname">Username?</a></span>
+            <br>
+            <span class="psw"> <a href="forgot_uname">Forgot Username?</a></span>
         </div>
     </form>
 </body>

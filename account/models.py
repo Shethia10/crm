@@ -10,3 +10,5 @@ class CustomUser(AbstractUser):
     alt_phone = models.CharField(max_length=10)
     designation = models.CharField(max_length=10)
     address = models.TextField()
+    
+    

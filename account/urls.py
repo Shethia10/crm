@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
+from .views import VerificationView
 
 urlpatterns = [
     path('register', views.register, name="register"),
@@ -24,5 +25,7 @@ urlpatterns = [
         name="password_reset_complete"),
     
     path('forgot_uname', views.forgot_uname, name="forgot_uname"),
-
+    path('emailverificationmsg', views.email_ver_msg, name="email_ver_msg"),
+    path('activate/<uidb64>/<token>', VerificationView.as_view(), name="activate"),
+     path('uname_pw_gen', views.uname_pw_gen, name="uname_pw_gen"),
 ]
