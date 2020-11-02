@@ -4,7 +4,7 @@
         <style>
             body {
                     font-size: 16px;
-                    background:#00a8e8; }
+                    background-color:#00a8e8; }
             form {
 
                     width: 450px;
@@ -115,6 +115,12 @@
                 </td>
             </tr>
             </table>
+            <div class="container">
+                {% for message in messages %}
+                <h3>{{message}}</h3>
+                {% endfor %}
+                
+            </div>
             <p>By clicking register you agree to our <a href="#">terms & conditions</a>.</p>
             <div class="row">
                 <input type="submit" value="Register">

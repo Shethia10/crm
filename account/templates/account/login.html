@@ -100,7 +100,9 @@
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>
 
-            <h3> {{message}} </h3>
+            {% for message in messages %}
+            <h3>{{message}}</h3>
+            {% endfor %}
 
             <button type="submit">Login</button>
             <label>
