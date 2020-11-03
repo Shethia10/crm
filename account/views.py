@@ -27,6 +27,8 @@ def register(request):
         phone = request.POST['phone']
         alt_phone = request.POST['alt_phone']
         designation = request.POST['designation']
+        if(designation == "Other"):
+            designation = request.POST['other']
         address = request.POST['address']
 
         #if password1 == password2:
