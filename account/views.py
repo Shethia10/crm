@@ -81,7 +81,7 @@ class VerificationView(View):
             user.save()
             email_body = 'Hi ' + user.first_name+' \n Your username: '+ user.email+ '\n Your Password: '+password
             email = EmailMessage(
-                'Activate your account',
+                'Your account has been activated',
                 email_body,
                 'rohan@gmail.com',
                 [user.email],
